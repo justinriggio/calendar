@@ -25,3 +25,5 @@ accounts-facebook
 ostrio:files
 fullcalendar:fullcalendar
 momentjs:moment
+twbs:bootstrap
+cleandersonlobo:sweetalert2
