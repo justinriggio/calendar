@@ -18,6 +18,10 @@ git clone project:
 
 in server/main.js on line 14 and 15 enter App ID and App Secret
 
+then do 
+
+    meteor npm install
+
 start meteor app by running meteor like so:
 
     meteor
