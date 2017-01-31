@@ -130,13 +130,15 @@ Template.calendar.onRendered( () => {
 		            confirmButtonText: 'Done',
 		            showCancelButton: false
 					    });
-						    CalEvents.insert({title:inputName,
-			        	description: inputDescription,
-				    		start: date.format() + 'T' + inputTime,
-				    		end: null,
-				    		color: Meteor.user().profile.color,
-				    		dataUrl: fileObject,
-				    		createdAt: new Date()
+						    CalEvents.insert({
+						    	title:inputName,
+			        		description: inputDescription,
+				    			start: date.format() + 'T' + inputTime,
+				    			end: null,
+				    			color: Meteor.user().profile.color,
+				    			dataUrl: fileObject,
+				    			createdAt: new Date(),
+				    			author: Meteor.user().profile.name
 				    	});
 					  };
 					  reader.readAsDataURL(inputDataURL)
@@ -149,11 +151,11 @@ Template.calendar.onRendered( () => {
 		},
     eventClick: function(event) {
     	if (Meteor.user()){
-    	// console.log(event);
+    	console.log(event);
 		    swal({
 		    		imageUrl: event.dataUrl,
 		        title: event.title,
-		        html: "Description: " + event.description + "<br>Time: " + moment(event.start).format("hh:mm A"),
+		        html: "created by: " + event.author + "<br>Description: " + event.description + "<br>Time: " + moment(event.start).format("hh:mm A"),
 		        showCancelButton: true,
 		        confirmButtonColor: '#3085d6',
 		        confirmButtonText: 'Edit'
@@ -270,7 +272,8 @@ Template.calendar.onRendered( () => {
         		start: evt.start,
         		end: evt.end,
         		color: evt.color,
-        		dataUrl: evt.dataUrl
+        		dataUrl: evt.dataUrl,
+        		author: evt.author
         };
         events.push(event);
         // console.log("event " + event.id);
